@@ -1,0 +1,7 @@
+<Project>
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+        <Deterministic>true</Deterministic>
+        <LangVersion>10</LangVersion>
+    </PropertyGroup>
+</Project>

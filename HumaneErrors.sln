@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SierraLib.HumaneErrors", "SierraLib.HumaneErrors\SierraLib.HumaneErrors.csproj", "{2A89898D-7043-417D-BECA-CEE8F48A35AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SierraLib.HumaneErrors.Tests", "SierraLib.HumaneErrors.Tests\SierraLib.HumaneErrors.Tests.csproj", "{40333A58-FB31-4CB3-B152-28871F3B46FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A89898D-7043-417D-BECA-CEE8F48A35AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A89898D-7043-417D-BECA-CEE8F48A35AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A89898D-7043-417D-BECA-CEE8F48A35AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A89898D-7043-417D-BECA-CEE8F48A35AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40333A58-FB31-4CB3-B152-28871F3B46FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40333A58-FB31-4CB3-B152-28871F3B46FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40333A58-FB31-4CB3-B152-28871F3B46FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40333A58-FB31-4CB3-B152-28871F3B46FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
