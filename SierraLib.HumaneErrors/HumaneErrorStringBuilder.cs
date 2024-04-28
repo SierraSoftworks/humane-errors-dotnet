@@ -25,39 +25,48 @@ class HumaneErrorStringBuilder
     /// <returns>A humane error context builder which can be converted into a human readable error message.</returns>
     public static string Build(Exception exception)
     {
-        if (exception is null)
+        try
         {
-            throw new ArgumentNullException(nameof(exception));
-        }
-        
-        var hasHumaneAnnotations = false;
-        var builder = new HumaneErrorStringBuilder(exception);
-
-        while (exception is not null)
-        {
-            if (HumaneErrorInformation.TryGet(exception, out var humaneInformation))
+            if (exception is null)
             {
-                hasHumaneAnnotations = true;
-                builder.AddCause($"{exception.GetType().FullName}: {humaneInformation.FailureMode} ({exception.Message})\n   at {humaneInformation.FilePath}:line {humaneInformation.LineNumber}");
-                foreach (var suggestion in humaneInformation.Suggestions)
+                throw new ArgumentNullException(nameof(exception));
+            }
+            
+            var hasHumaneAnnotations = false;
+            var builder = new HumaneErrorStringBuilder(exception);
+
+            var innerException = exception;
+
+            while (innerException is not null)
+            {
+                if (HumaneErrorInformation.TryGet(innerException, out var humaneInformation))
                 {
-                    builder.AddSuggestion(suggestion);
+                    hasHumaneAnnotations = true;
+                    builder.AddCause($"{innerException.GetType().FullName}: {humaneInformation.FailureMode} ({innerException.Message})\n   at {humaneInformation.FilePath}:line {humaneInformation.LineNumber}");
+                    foreach (var suggestion in humaneInformation.Suggestions)
+                    {
+                        builder.AddSuggestion(suggestion);
+                    }
                 }
+                else
+                {
+                    builder.AddCause($"{innerException.GetType().FullName}: {innerException.Message}\n{innerException.StackTrace?.Split('\n').FirstOrDefault()}".TrimEnd());
+                }
+
+                innerException = innerException.InnerException;
             }
-            else
+
+            if (!hasHumaneAnnotations)
             {
-                builder.AddCause($"{exception.GetType().FullName}: {exception.Message}\n{exception.StackTrace?.Split('\n').FirstOrDefault()}".TrimEnd());
+                return builder.rootException.ToString();
             }
 
-            exception = exception.InnerException;
+            return builder.ToString();
         }
-
-        if (!hasHumaneAnnotations)
+        catch
         {
-            return builder.rootException.ToString();
+            return exception.ToString();
         }
-
-        return builder.ToString();
     }
 
     /// <summary>
